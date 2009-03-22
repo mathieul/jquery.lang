@@ -147,6 +147,9 @@ var window = this;
 			return makeNode( this._dom.createTextNode(
 				text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")) );
 		},
+		createComment: function(text) {
+			return makeNode( this._dom.createTextNode('<!-- ' + text + '-->') );
+		},
 		createElement: function(name){
 			return makeNode( this._dom.createElement(name.toLowerCase()) );
 		},

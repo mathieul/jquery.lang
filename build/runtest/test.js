@@ -5,15 +5,15 @@ window.location = "test/index.html";
 
 window.onload = function(){
     // Load the test runner
-    load("dist/jquery.js","build/runtest/testrunner.js");
+    load(
+        "lib/jquery.js",
+        "src/jquery.lib.js",
+        "build/runtest/testrunner.js"
+    );
     
     // Load the tests
     load(
-        "test/unit/core.js",
-        "test/unit/selector.js",
-        "test/unit/event.js"
-        //"test/unit/fx.js",
-        //"test/unit/ajax.js"
+        "test/unit/lib.js"
     );
     
     // Display the results
