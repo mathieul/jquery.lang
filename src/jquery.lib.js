@@ -47,14 +47,20 @@
      *         The second form uses the first element of the collection
      *         as a the initial value (and skips that element while iterating).
      */
-    $.lib.inject = function (enum, arg2, arg3) {
-        var block = $.lib.is_function(arg2) ? arg2 : arg3,
-            memo = (block === arg2) ? 0 : arg2;
-
-        $.each(enum, function (i, item) {
-            memo = block(memo, item);
-        })
+    $.lib.inject = function (enum, memo, block) {
+        if (block === undefined) {
+            block = memo;
+            memo = 0;
+        }
+        $.each(enum, function (i, item) { memo = block(memo, item); });
         return memo;
     };
+
+    /*
+     * each: Calls block once for each element in self, passing that element
+     *       as a parameter.
+     */
+    $.lib.each = $.each;
+
 
 })(jQuery);

@@ -63,6 +63,10 @@
     });
     
     describe('Enum methods', {
+        "should have $.lib.each() as an alias for $.each()": function () {
+            value_of($.lib.each).should_be($.each);
+        },
+
         "should inject the enumerable starting at 0 when called inject() without init": function () {
             value_of($.lib.inject([1, 2, 3, 4, 5], function (mem, item) {
                 return mem + item;
