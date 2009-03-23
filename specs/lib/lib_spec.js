@@ -25,8 +25,16 @@
         before_each: function () {},
         after_each: function () {},
 
-        'should create an object when call to $.lib.create_object()': function () {
-            value_of(typeof $.lib.create_object).should_be('function');
+        'should return an object when call to $.lib.create_object()': function () {
+            value_of(typeof $.lib.create_object({})).should_be('object');
+        },
+        
+        'should return an object with its prototype set to the parameter': function () {
+            var func = function () { return 42; },
+                obj = $.lib.create_object({str: "hey", num: 12, answer: func});
+            value_of(obj.str).should_be("hey");
+            value_of(obj.num).should_be(12);
+            value_of(obj.answer()).should_be("42");
         }
     });
     
@@ -51,6 +59,20 @@
             value_of($.lib.is_string(function () {})).should_be_false();
             value_of($.lib.is_string({hello: 'bonjour'})).should_be_false();
             value_of($.lib.is_string([1, 2])).should_be_false();
+        }
+    });
+    
+    describe('Enum methods', {
+        "should inject the enumerable starting at 0 when called inject() without init": function () {
+            value_of($.lib.inject([1, 2, 3, 4, 5], function (mem, item) {
+                return mem + item;
+            })).should_be(15);
+        },
+
+        "should inject the enumerable starting at init when called inject() with init": function () {
+            value_of($.lib.inject([10, 20, 30], 100, function (mem, item) {
+                return mem - item;
+            })).should_be(40);
         }
     });
 
