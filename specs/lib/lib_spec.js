@@ -133,30 +133,67 @@
             value_of($.lib.each).should_be($.each);
         },
 
-        "should inject an enumerable starting at 0 when called inject() without init": function () {
+        "should have $.lib.map() as an alias for $.map()": function () {
+            value_of($.lib.map).should_be($.map);
+        },
+
+        "should have $.lib.grep() as an alias for $.grep()": function () {
+            value_of($.lib.grep).should_be($.grep);
+        },
+
+        "should inject an enumerable starting at 0 when calling inject() without init": function () {
             value_of($.lib.inject([1, 2, 3, 4, 5], function (mem, item) {
                 return mem + item;
             })).should_be(15);
         },
 
-        "should inject an enumerable starting at init when called inject() with init": function () {
+        "should inject an enumerable starting at init when calling inject() with init": function () {
             value_of($.lib.inject([10, 20, 30], 100, function (mem, item) {
                 return mem - item;
             })).should_be(40);
-        }
+        },
         
-        // TODO: all, any, map, first, select, grep, group_by, min, max, sort, compact
+        "should return all elements that match the condition when calling all()": function () {
+            value_of($.lib.all([5, 4, 3, 2, 1, 0],
+                               function (i, item) { return item % 2 === 0; })).
+            should_be([4, 2, 0]);
+        },
+        
+        "should return the first element that matches the condition when calling first()": function () {
+            value_of($.lib.first([22, 33, 44],
+                               function (i, item) { return item % 2 === 1; })).
+            should_be(33);
+
+            value_of($.lib.first([2, 4, 6, 8],
+                               function (i, item) { return item % 2 === 1; })).
+            should_be(null);
+        },
+
+        "should return if any element matches the condition when calling any()": function () {
+            value_of($.lib.any([2, 4, 6, 8],
+                               function (i, item) { return item % 2 === 0; })).
+            should_be(true);
+
+            value_of($.lib.any([2, 4, 6, 8],
+                               function (i, item) { return item % 2 === 1; })).
+            should_be(false);
+        },
+
+        // TODO: select, group_by, min, max, sort, compact
+        "should ": function () {
+            value_of(true).should_be(true);
+        }
     });
 
     describe('Hash methods', {
-        "should return an array of the object's keys when called keys()": function () {
+        "should return an array of the object's keys when calling keys()": function () {
             value_of($.lib.keys({
                 hello: "Bonjour",
                 london: "Londres"})).
             should_be(["hello", "london"]);
         },
 
-        "should return an array of the object's own keys when called keys() with flag set": function () {
+        "should return an array of the object's own keys when calling keys() with flag set": function () {
             var ancestor = {
                     hello: "Bonjour",
                     london: "Londres"
@@ -168,14 +205,14 @@
             value_of($.lib.keys(obj, true)).should_be(["one", "two", "three"]);
         },
 
-        "should return an array of the object's values when called values()": function () {
+        "should return an array of the object's values when calling values()": function () {
             value_of($.lib.values({
                 hello: "Bonjour",
                 london: "Londres"})).
             should_be(["Bonjour", "Londres"]);
         },
 
-        "should return an array of the object's own values when called values() with flag set": function () {
+        "should return an array of the object's own values when calling values() with flag set": function () {
             var ancestor = {
                     hello: "Bonjour",
                     london: "Londres"

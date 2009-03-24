@@ -78,19 +78,19 @@
     $.lib.is_undefined = function (val) { return typeof val === 'undefined' };
 
     /*
-     * inject: Combines the elements of enum by applying the block
+     * inject: Combines the elements of enumerable by applying the block
      *         to an accumulator value (memo) and each element in turn.
      *         At each step, memo is set to the value returned by the block.
      *         The first form lets you supply an initial value for memo.
      *         The second form uses the first element of the collection
      *         as a the initial value (and skips that element while iterating).
      */
-    $.lib.inject = function (enum, memo, block) {
+    $.lib.inject = function (enumerable, memo, block) {
         if (typeof block === 'undefined') {
             block = memo;
             memo = 0;
         }
-        $.each(enum, function (i, item) { memo = block(memo, item); });
+        $.each(enumerable, function (i, item) { memo = block(memo, item); });
         return memo;
     };
 
@@ -99,6 +99,17 @@
      *       as a parameter.
      */
     $.lib.each = $.each;
+
+    /*
+     * map: Calls block once for each element in self and return an array with
+     *      the results
+     */
+    $.lib.map = $.map;
+
+    /*
+     * grep: TODO (same than all?)
+     */
+    $.lib.grep = $.grep;
 
     /*
      * keys: Returns an array with the keys of the object
@@ -129,4 +140,42 @@
         }
         return values;
     };
+
+    /*
+     * all: Returns an array with the elements that match the condition
+     */
+    $.lib.all = function (enumerable, condition) {
+        var all = [],
+            key;
+        
+        for (key in enumerable) {
+            if (enumerable.hasOwnProperty(key) && condition(key, enumerable[key])) {
+                all.push(enumerable[key]);
+            }
+        }
+        return all;
+    };
+
+    /*
+     * first: Returns the first enumerable element that matches the condition or null
+     *        if none does
+     */
+    $.lib.first = function (enumerable, condition) {
+        var key;
+        
+        for (key in enumerable) {
+            if (enumerable.hasOwnProperty(key) && condition(key, enumerable[key])) {
+                return enumerable[key];
+            }
+        }
+        return null;
+    };
+
+    /*
+     * any: Returns if any of the enumerable elements matches the condition
+     */
+    $.lib.any = function (enumerable, condition) {
+        return !!$.lib.first(enumerable, condition);
+    };
+
 })(jQuery);
