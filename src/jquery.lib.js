@@ -55,11 +55,6 @@
     };
 
     /*
-     * is_null: checks if the parameter is null
-     */
-    $.lib.is_null = function (val) { return val === null };
-
-    /*
      * is_object: checks if the parameter is a object
      */
     $.lib.is_object = function (val) {
@@ -120,4 +115,18 @@
         return keys;
     };
 
+    /*
+     * values: Returns an array with the values of the object
+     */
+    $.lib.values = function (obj, own) {
+        var values = [],
+            key;
+        
+        for (key in obj) {
+            if (!own || obj.hasOwnProperty(key)) {
+                values.push(obj[key]);
+            }
+        }
+        return values;
+    };
 })(jQuery);

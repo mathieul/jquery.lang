@@ -95,27 +95,60 @@
 
         'should return false when calling is_date() if not a date': function () {
             value_of($.lib.is_date({toUTCString: 'test'})).should_be_false();
+        },
+        
+        'should return true when calling is_object() with an object': function () {
+            value_of($.lib.is_object({})).should_be_true();
+            value_of($.lib.is_object(function () {})).should_be_true();
+        },
+
+        'should return false when calling is_object() if not an object': function () {
+            value_of($.lib.is_object(12)).should_be_false();
+            value_of($.lib.is_object("blah")).should_be_false();
+        },
+        
+        'should return true when calling is_regexp() with a regexp': function () {
+            value_of($.lib.is_regexp(new RegExp('^$'))).should_be_true();
+            value_of($.lib.is_regexp(/^$/)).should_be_true();
+        },
+
+        'should return false when calling is_regexp() if not a regexp': function () {
+            value_of($.lib.is_regexp("^$")).should_be_false();
+        },
+
+        'should return true when calling is_undefined() with a regexp': function () {
+            var not_defined;
+            value_of($.lib.is_undefined()).should_be_true();
+            value_of($.lib.is_undefined(not_defined)).should_be_true();
+            value_of($.lib.is_undefined(undefined)).should_be_true();
+        },
+
+        'should return false when calling is_undefined() if not a regexp': function () {
+            value_of($.lib.is_undefined(false)).should_be_false();
         }
-        // TODO: null, object, regexp, undefined
     });
     
-    describe('Enum methods', {
+    describe('Enumerable methods', {
         "should have $.lib.each() as an alias for $.each()": function () {
             value_of($.lib.each).should_be($.each);
         },
 
-        "should inject the enumerable starting at 0 when called inject() without init": function () {
+        "should inject an enumerable starting at 0 when called inject() without init": function () {
             value_of($.lib.inject([1, 2, 3, 4, 5], function (mem, item) {
                 return mem + item;
             })).should_be(15);
         },
 
-        "should inject the enumerable starting at init when called inject() with init": function () {
+        "should inject an enumerable starting at init when called inject() with init": function () {
             value_of($.lib.inject([10, 20, 30], 100, function (mem, item) {
                 return mem - item;
             })).should_be(40);
-        },
+        }
         
+        // TODO: all, any, map, first, select, grep, group_by, min, max, sort, compact
+    });
+
+    describe('Hash methods', {
         "should return an array of the object's keys when called keys()": function () {
             value_of($.lib.keys({
                 hello: "Bonjour",
@@ -133,6 +166,25 @@
             obj.one = "1"; obj.two = "2"; obj.three = "3";
             value_of($.lib.keys(obj)).should_be(["one", "two", "three", "hello", "london"]);
             value_of($.lib.keys(obj, true)).should_be(["one", "two", "three"]);
+        },
+
+        "should return an array of the object's values when called values()": function () {
+            value_of($.lib.values({
+                hello: "Bonjour",
+                london: "Londres"})).
+            should_be(["Bonjour", "Londres"]);
+        },
+
+        "should return an array of the object's own values when called values() with flag set": function () {
+            var ancestor = {
+                    hello: "Bonjour",
+                    london: "Londres"
+                },
+                obj = $.lib.create_object(ancestor);
+
+            obj.one = "1"; obj.two = "2"; obj.three = "3";
+            value_of($.lib.values(obj)).should_be(["1", "2", "3", "Bonjour", "Londres"]);
+            value_of($.lib.values(obj, true)).should_be(["1", "2", "3"]);
         }
     });
 })();
