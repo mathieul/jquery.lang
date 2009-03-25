@@ -1,7 +1,5 @@
-SRC_DIR = src
-BUILD_DIR = build
-
 PREFIX = .
+SRC_DIR = ${PREFIX}/src
 DOCS_DIR = ${PREFIX}/docs
 SPECS_DIR = ${PREFIX}/specs
 DIST_DIR = ${PREFIX}/dist
@@ -40,3 +38,7 @@ ${JQ_LANG}: ${MODULES}
 
 	@@echo ${JQ_LANG} "Built"
 	@@echo
+
+clean:
+	@@echo "Removing Distribution directory:" ${DIST_DIR}
+	@@rm -rf ${DIST_DIR}
