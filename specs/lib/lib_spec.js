@@ -137,10 +137,6 @@
             value_of($.lib.map).should_be($.map);
         },
 
-        "should have $.lib.grep() as an alias for $.grep()": function () {
-            value_of($.lib.grep).should_be($.grep);
-        },
-
         "should inject an enumerable starting at 0 when calling inject() without init": function () {
             value_of($.lib.inject([1, 2, 3, 4, 5], function (mem, item) {
                 return mem + item;
@@ -153,10 +149,16 @@
             })).should_be(40);
         },
         
-        "should return all elements that match the condition when calling all()": function () {
-            value_of($.lib.all([5, 4, 3, 2, 1, 0],
+        "should return all array elements that match the condition when calling select()": function () {
+            value_of($.lib.select([5, 0, 3, 4, 2, 1],
                                function (i, item) { return item % 2 === 0; })).
-            should_be([4, 2, 0]);
+            should_be([0, 4, 2]);
+        },
+
+        "should return all object elements that match the condition when calling select()": function () {
+            value_of($.lib.select({yes: 'in', no: 'out', yes: 'hey'},
+                               function (key, val) { return key === 'yes'; })).
+            should_be({yes: 'in', yes: 'hey'});
         },
         
         "should return the first element that matches the condition when calling first()": function () {
@@ -169,6 +171,16 @@
             should_be(null);
         },
 
+        "should return if all the elements match the condition when calling all()": function () {
+            value_of($.lib.all([2, 4, 6, 8],
+                               function (i, item) { return item % 2 === 0; })).
+            should_be(true);
+
+            value_of($.lib.all([2, 4, 6, 8, 9],
+                               function (i, item) { return item % 2 === 0; })).
+            should_be(false);
+        },
+
         "should return if any element matches the condition when calling any()": function () {
             value_of($.lib.any([2, 4, 6, 8],
                                function (i, item) { return item % 2 === 0; })).
@@ -179,7 +191,7 @@
             should_be(false);
         },
 
-        // TODO: select, group_by, min, max, sort, compact
+        // TODO: group_by, min, max, sort, compact
         "should ": function () {
             value_of(true).should_be(true);
         }

@@ -107,11 +107,6 @@
     $.lib.map = $.map;
 
     /*
-     * grep: TODO (same than all?)
-     */
-    $.lib.grep = $.grep;
-
-    /*
      * keys: Returns an array with the keys of the object
      */
     $.lib.keys = function (obj, own) {
@@ -142,18 +137,31 @@
     };
 
     /*
-     * all: Returns an array with the elements that match the condition
+     * select: Returns an array with the elements that match the condition
      */
-    $.lib.all = function (enumerable, condition) {
-        var all = [],
+    $.lib.select = function (enumerable, condition) {
+        var selected,
+            i, len,
             key;
         
-        for (key in enumerable) {
-            if (enumerable.hasOwnProperty(key) && condition(key, enumerable[key])) {
-                all.push(enumerable[key]);
+        if ($.lib.is_array(enumerable)) {
+            selected = [];
+            for (i = 0, len = enumerable.length; i < len; i += 1) {
+                if (condition(i, enumerable[i])) {
+                    selected.push(enumerable[i]);
+                }
             }
         }
-        return all;
+        else {
+            selected = {};
+            for (key in enumerable) {
+                if (enumerable.hasOwnProperty(key) && condition(key, enumerable[key])) {
+                    selected[key] = enumerable[key];
+                }
+            }
+        }
+
+        return selected;
     };
 
     /*
@@ -161,15 +169,26 @@
      *        if none does
      */
     $.lib.first = function (enumerable, condition) {
-        var key;
-        
-        for (key in enumerable) {
+        for (var key in enumerable) {
             if (enumerable.hasOwnProperty(key) && condition(key, enumerable[key])) {
                 return enumerable[key];
             }
         }
         return null;
     };
+
+    /*
+     * all: Returns if all of the enumerable elements match the condition
+     */
+    $.lib.all = function (enumerable, condition) {
+        for (var key in enumerable) {
+            if (enumerable.hasOwnProperty(key) && !condition(key, enumerable[key])) {
+                return false;
+            }
+        }
+        return true;
+    };
+
 
     /*
      * any: Returns if any of the enumerable elements matches the condition
