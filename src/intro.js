@@ -12,5 +12,5 @@
  * Date: 
  * Commit: 
  */
-(function(){
+(function($){
 

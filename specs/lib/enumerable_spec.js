@@ -20,26 +20,35 @@
  *  - 
  */
 (function () {
-
+    
     describe('Enumerable methods', {
-        "should have $.lang.each() as an alias for $.each()": function () {
-            value_of($.lang.each).should_be($.each);
+        "should run the callback for each enumerable item when calling each()": function () {
+            var count = 0;
+            $.lang.enumerable(['one', 'two', 'three']).each(function (item, i) { count += 1; });
+            value_of(count).should_be(3);
+            
+            count = 0;
+            $.lang.enumerable({attr: "value"}).each (function (key, value) {
+                if (key === 'attr') { count += 1; }
+            })
+            value_of(count).should_be(1);
         },
 
-        "should have $.lang.map() as an alias for $.map()": function () {
-            value_of($.lang.map).should_be($.map);
+        "should map the result of the callback for each item when calling map()": function () {
+            value_of($.lang.enumerable([5, 3, 9]).map(function (item, i) { return item * 3; })).
+                should_be([15, 9, 27]);
         },
 
         "should inject an enumerable starting at 0 when calling inject() without init": function () {
-            value_of($.lang.inject([1, 2, 3, 4, 5], function (mem, item) {
-                return mem + item;
-            })).should_be(15);
+            var enum = $.lang.enumerable([1, 2, 3, 4, 5]);
+            value_of($.lang.inject(enum, function (mem, item) { return mem + item; })).
+            should_be(15);
         },
 
         "should inject an enumerable starting at init when calling inject() with init": function () {
-            value_of($.lang.inject([10, 20, 30], 100, function (mem, item) {
-                return mem - item;
-            })).should_be(40);
+            var enum = $.lang.enumerable([10, 20, 30]);
+            value_of($.lang.inject(enum, 100, function (mem, item) { return mem - item; })).
+                should_be(40);
         },
         
         "should return all array elements that match the condition when calling select()": function () {
