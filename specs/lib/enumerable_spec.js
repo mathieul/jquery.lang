@@ -76,26 +76,26 @@
         "should return if all the elements match the condition when calling all()": function () {
             value_of($.lang.all([2, 4, 6, 8],
                                function (i, item) { return item % 2 === 0; })).
-            should_be(true);
+            should_be_true());
 
             value_of($.lang.all([2, 4, 6, 8, 9],
                                function (i, item) { return item % 2 === 0; })).
-            should_be(false);
+            should_be_false());
         },
 
         "should return if any element matches the condition when calling any()": function () {
             value_of($.lang.any([2, 4, 6, 8],
                                function (i, item) { return item % 2 === 0; })).
-            should_be(true);
+            should_be_true());
 
             value_of($.lang.any([2, 4, 6, 8],
                                function (i, item) { return item % 2 === 1; })).
-            should_be(false);
+            should_be_false());
         },
 
         // TODO: group_by, min, max, sort, compact
         "should ": function () {
-            value_of(true).should_be(true);
+            value_of(true).should_be_true());
         }
     });
 
