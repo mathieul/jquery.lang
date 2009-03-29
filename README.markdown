@@ -2,6 +2,10 @@
 
 ## Utility Functions ##
 
+Object:
+
+ - create_object
+
 Enumerable:
 
  - inject
@@ -10,12 +14,16 @@ Enumerable:
  - find
  - find_all
 
+Hash:
+
+ - keys
+ - values
+
 
 ## TODO ##
 
 Object:
 
- - create_object
  - create_template (for prototypal inheritance)
 
 Array:
@@ -25,11 +33,6 @@ Array:
  - compact
  - flatten
  - uniq
-
-Hash:
-
- - keys
- - values
 
 RegExp:
 

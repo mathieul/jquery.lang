@@ -40,15 +40,15 @@
                 should_be(null);
         },
 
-        "should return all array elements that match the condition when calling select()": function () {
+        "should return all array elements that match the condition when calling find_all()": function () {
             value_of($.find_all([5, 0, 3, 4, 2, 1],
                 function (i, item) { return item % 2 === 0; })).
             should_be([0, 4, 2]);
         },
 
-        "should return all object elements that match the condition when calling select()": function () {
+        "should return all object elements that match the condition when calling find_all()": function () {
             value_of($.find_all({'in': 'yes', 'out': 'no', 'hey': 'yes'},
-                function (key, val) { return key === 'yes'; })).
+                function (key, value) { return value === 'yes'; })).
             should_be({'in': 'yes', 'hey': 'yes'});
         },
 
@@ -73,49 +73,3 @@
         }
     });
 })();
-
-/*
-// TODO: group_by, min, max, sort, compact
-"should ": function () {
-    value_of(true).should_be_true());
-}
-    describe('Hash methods', {
-        "should return an array of the object's keys when calling keys()": function () {
-            value_of($.lang.keys({
-                hello: "Bonjour",
-                london: "Londres"})).
-            should_be(["hello", "london"]);
-        },
-
-        "should return an array of the object's own keys when calling keys() with flag set": function () {
-            var ancestor = {
-                    hello: "Bonjour",
-                    london: "Londres"
-                },
-                obj = $.lang.create_object(ancestor);
-
-            obj.one = "1"; obj.two = "2"; obj.three = "3";
-            value_of($.lang.keys(obj)).should_be(["one", "two", "three", "hello", "london"]);
-            value_of($.lang.keys(obj, true)).should_be(["one", "two", "three"]);
-        },
-
-        "should return an array of the object's values when calling values()": function () {
-            value_of($.lang.values({
-                hello: "Bonjour",
-                london: "Londres"})).
-            should_be(["Bonjour", "Londres"]);
-        },
-
-        "should return an array of the object's own values when calling values() with flag set": function () {
-            var ancestor = {
-                    hello: "Bonjour",
-                    london: "Londres"
-                },
-                obj = $.lang.create_object(ancestor);
-
-            obj.one = "1"; obj.two = "2"; obj.three = "3";
-            value_of($.lang.values(obj)).should_be(["1", "2", "3", "Bonjour", "Londres"]);
-            value_of($.lang.values(obj, true)).should_be(["1", "2", "3"]);
-        }
-    });
-*/
