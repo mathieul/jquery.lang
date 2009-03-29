@@ -38,6 +38,10 @@
 
             value_of($.find([2, 4, 6, 8], function (i, item) { return item % 2 === 1; })).
                 should_be(null);
+
+            value_of($.find({one: 11, two: 22, three: 33},
+                function (i, item) { return item % 2 === 1; })).
+                should_be({key: 'one', value: 11});
         },
 
         "should return all array elements that match the condition when calling findAll()": function () {

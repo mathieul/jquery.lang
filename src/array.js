@@ -38,7 +38,7 @@ $.extend({
             len = array.length;
 
         while (i < len) {
-            if (array[i] === null || typeof array[i] === 'undefined') {
+            if (array[i] === null || array[i] === undefined) {
                 array.splice(i, 1);
                 len = array.length;
             }

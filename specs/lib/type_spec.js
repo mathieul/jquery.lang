@@ -77,17 +77,6 @@
 
         'should return false when calling isRegExp() if not a regexp': function () {
             value_of($.isRegExp("^$")).should_be_false();
-        },
-
-        'should return true when calling isUndefined() with a regexp': function () {
-            var not_defined;
-            value_of($.isUndefined()).should_be_true();
-            value_of($.isUndefined(not_defined)).should_be_true();
-            value_of($.isUndefined(undefined)).should_be_true();
-        },
-
-        'should return false when calling isUndefined() if not a regexp': function () {
-            value_of($.isUndefined(false)).should_be_false();
         }
     });
 })();

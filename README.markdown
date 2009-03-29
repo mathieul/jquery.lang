@@ -6,6 +6,16 @@ Object:
 
  - createObject
 
+Type:
+
+ - isNumber
+ - isString
+ - isBoolean
+ - isDate
+ - isObject
+ - isRegExp
+
+
 Enumerable:
 
  - inject
@@ -21,7 +31,7 @@ Hash:
 
 Array:
 
- - by (for sort)
+ - by
  - compact
  - flatten
  - noDuplicates
@@ -32,9 +42,4 @@ String:
  - escapeRegExp
  - htmlEncode
  - htmlDecode
-
-## TODO ##
-
-String:
-
  - printf

@@ -10,12 +10,12 @@ $.extend({
      *         The second form uses the first element of the collection
      *         as a the initial value (and skips that element while iterating).
      */
-    inject: function (enumerable, memo, block) {
-        if (typeof block === 'undefined') {
+    inject: function (enumz, memo, block) {
+        if (block === undefined) {
             block = memo;
             memo = 0;
         }
-        $.each(enumerable, function (i, item) { memo = block(memo, item); });
+        $.each(enumz, function (i, item) { memo = block(memo, item); });
         return memo;
     },
 
@@ -23,36 +23,48 @@ $.extend({
      * find: Returns the first enumerable element that matches the condition or null
      *        if none does
      */
-    find: function (enumerable, condition) {
-        for (var key in enumerable) {
-            if (enumerable.hasOwnProperty(key) && condition(key, enumerable[key])) {
-                return enumerable[key];
+    find: function (enumz, condition) {
+        var i, len = enumz.length;
+        
+        if (len === undefined) {
+            for (var key in enumz) {
+                if (enumz.hasOwnProperty(key) && condition.call(enumz[key], key, enumz[key])) {
+                    return {key: key, value: enumz[key]};
+                }
             }
         }
+        else {
+            for (i = 0; i < len; i += 1) {
+                if (condition.call(enumz[i], i, enumz[i])) {
+                    return enumz[i];
+                }
+            }
+        }
+        
         return null;
     },
 
     /*
      * findAll: Returns an array with the elements that match the condition
      */
-    findAll: function (enumerable, condition) {
+    findAll: function (enumz, condition) {
         var selected,
         i, len,
         key;
     
-        if ($.isArray(enumerable)) {
+        if ($.isArray(enumz)) {
             selected = [];
-            for (i = 0, len = enumerable.length; i < len; i += 1) {
-                if (condition(i, enumerable[i])) {
-                    selected.push(enumerable[i]);
+            for (i = 0, len = enumz.length; i < len; i += 1) {
+                if (condition(i, enumz[i])) {
+                    selected.push(enumz[i]);
                 }
             }
         }
         else {
             selected = {};
-            for (key in enumerable) {
-                if (enumerable.hasOwnProperty(key) && condition(key, enumerable[key])) {
-                    selected[key] = enumerable[key];
+            for (key in enumz) {
+                if (enumz.hasOwnProperty(key) && condition(key, enumz[key])) {
+                    selected[key] = enumz[key];
                 }
             }
         }
@@ -63,9 +75,9 @@ $.extend({
     /*
      * all: Returns if all of the enumerable elements match the condition
      */
-    all: function (enumerable, condition) {
-        for (var key in enumerable) {
-            if (enumerable.hasOwnProperty(key) && !condition(key, enumerable[key])) {
+    all: function (enumz, condition) {
+        for (var key in enumz) {
+            if (enumz.hasOwnProperty(key) && !condition(key, enumz[key])) {
                 return false;
             }
         }
@@ -76,7 +88,7 @@ $.extend({
     /*
      * any: Returns if any of the enumerable elements matches the condition
      */
-    any: function (enumerable, condition) {
-        return !!$.find(enumerable, condition);
+    any: function (enumz, condition) {
+        return !!$.find(enumz, condition);
     }
 });

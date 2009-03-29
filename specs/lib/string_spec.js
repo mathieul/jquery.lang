@@ -37,6 +37,7 @@
         },
         
         "should format arguments using sprintf format when calling sprintf()": function () {
+            value_of($.sprintf("%02d/%02d/%d", 3, 9, 1971)).should_be('03/09/1971');
             value_of($.sprintf('%01.2f', 123.1)).should_be('123.10');
             value_of($.sprintf('[%10s]', 'monkey')).should_be('[    monkey]');
             value_of($.sprintf("[%'#10s]", 'monkey')).should_be('[####monkey]');

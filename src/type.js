@@ -41,11 +41,6 @@ $.extend({
      */
     isRegExp: function (val) {
         return Object.prototype.toString.call(val) === "[object RegExp]";
-    },
-
-    /*
-     * isUndefined: checks if the parameter is undefined
-     */
-    isUndefined: function (val) { return typeof val === 'undefined'; }
+    }
 });
 
