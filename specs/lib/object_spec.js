@@ -24,13 +24,13 @@
         before_each: function () {},
         after_each: function () {},
 
-        'should return an object when calling create_object()': function () {
-            value_of(typeof $.create_object({})).should_be('object');
+        'should return an object when calling createObject()': function () {
+            value_of(typeof $.createObject({})).should_be('object');
         },
         
         'should return an object with its prototype set to the parameter': function () {
             var func = function () { return 42; },
-                obj = $.create_object({str: "hey", num: 12, answer: func});
+                obj = $.createObject({str: "hey", num: 12, answer: func});
             value_of(obj.str).should_be("hey");
             value_of(obj.num).should_be(12);
             value_of(obj.answer()).should_be("42");

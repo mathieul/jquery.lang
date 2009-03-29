@@ -38,6 +38,18 @@
             var func = $.by('age', function (a, b) { return [a.name, b.name]; });
 
             value_of(func(zhanna, ira)).should_be(['Zhanna', 'Irina']);
+        },
+        
+        "should return an array without null and undefined values when calling compact()": function () {
+            var orig = [1, 'blah', null, [], undefined, 2, null, 2],
+                result = $.compact(orig);
+
+                value_of(result).should_be([1, 'blah', [], 2, 2]);
+                value_of(orig).should_be([1, 'blah', [], 2, 2]);
+        },
+        
+        "should flatten the array when calling flatten()": function () {
+            
         }
     });
 })();

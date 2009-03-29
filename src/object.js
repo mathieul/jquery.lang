@@ -3,9 +3,9 @@
  */
 $.extend({
     /*
-    * create_object: create an object using prototypal inheritance
+    * createObject: create an object using prototypal inheritance
     */
-    create_object: function (o) {
+    createObject: function (o) {
         var F = function () {};
         F.prototype = o;
         return new F();

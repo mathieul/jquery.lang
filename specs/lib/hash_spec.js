@@ -33,7 +33,7 @@
                     hello: "Bonjour",
                     london: "Londres"
                 },
-                obj = $.create_object(ancestor);
+                obj = $.createObject(ancestor);
 
             obj.one = "1"; obj.two = "2"; obj.three = "3";
             value_of($.keys(obj)).should_be(["one", "two", "three", "hello", "london"]);
@@ -52,7 +52,7 @@
                     hello: "Bonjour",
                     london: "Londres"
                 },
-                obj = $.create_object(ancestor);
+                obj = $.createObject(ancestor);
 
             obj.one = "1"; obj.two = "2"; obj.three = "3";
             value_of($.values(obj)).should_be(["1", "2", "3", "Bonjour", "Londres"]);

@@ -40,9 +40,7 @@ $.extend({
      * isRegExp: checks if the parameter is a RegExp
      */
     isRegExp: function (val) {
-        return !!val &&
-        $.isObject(val) &&
-        val.constructor === RegExp;
+        return Object.prototype.toString.call(val) === "[object RegExp]";
     },
 
     /*

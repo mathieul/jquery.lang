@@ -4,7 +4,7 @@
 
 Object:
 
- - create_object
+ - createObject
 
 Enumerable:
 
@@ -22,6 +22,7 @@ Hash:
 Array:
 
  - by (for sort)
+ - compact
 
 
 ## TODO ##
@@ -32,8 +33,6 @@ Object:
 
 Array:
 
- - include (?)
- - compact
  - flatten
  - uniq
 
