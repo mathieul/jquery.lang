@@ -1,5 +1,16 @@
 # jQuery.lang plugin #
 
+## Utility Functions ##
+
+Enumerable:
+
+ - inject
+ - all
+ - any
+ - find
+ - find_all
+
+
 ## TODO ##
 
 Object:
@@ -7,18 +18,10 @@ Object:
  - create_object
  - create_template (for prototypal inheritance)
 
-Enumerable:
-
- - inject
- - all
- - any
- - find_first
- - find_all
- - include (?)
- - by (for sort)
-
 Array:
 
+ - by (for sort)
+ - include (?)
  - compact
  - flatten
  - uniq

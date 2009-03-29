@@ -24,59 +24,57 @@
     describe('Enumerable functions', {
         "should inject an enumerable starting at 0 when calling inject() without init": function () {
             value_of($.inject([1, 2, 3, 4, 5], function (mem, item) { return mem + item; })).
-            should_be(15);
+                should_be(15);
         },
 
         "should inject an enumerable starting at init when calling inject() with init": function () {
             value_of($.inject([10, 20, 30], 100, function (mem, item) { return mem - item; })).
                 should_be(40);
+        },
+
+        "should return the first element that matches the condition when calling find()": function () {
+            value_of($.find([22, 33, 44], function (i, item) { return item % 2 === 1; })).
+                should_be(33);
+
+            value_of($.find([2, 4, 6, 8], function (i, item) { return item % 2 === 1; })).
+                should_be(null);
+        },
+
+        "should return all array elements that match the condition when calling select()": function () {
+            value_of($.find_all([5, 0, 3, 4, 2, 1],
+                function (i, item) { return item % 2 === 0; })).
+            should_be([0, 4, 2]);
+        },
+
+        "should return all object elements that match the condition when calling select()": function () {
+            value_of($.find_all({'in': 'yes', 'out': 'no', 'hey': 'yes'},
+                function (key, val) { return key === 'yes'; })).
+            should_be({'in': 'yes', 'hey': 'yes'});
+        },
+
+        "should return if all the elements match the condition when calling all()": function () {
+            value_of($.all([2, 4, 6, 8],
+                function (i, item) { return item % 2 === 0; })).
+            should_be_true();
+
+            value_of($.all([2, 4, 6, 8, 9],
+                function (i, item) { return item % 2 === 0; })).
+            should_be_false();
+        },
+
+        "should return if any element matches the condition when calling any()": function () {
+            value_of($.any([2, 4, 6, 8],
+                function (i, item) { return item % 2 === 0; })).
+            should_be_true();
+
+            value_of($.any([2, 4, 6, 8],
+                function (i, item) { return item % 2 === 1; })).
+            should_be_false();
         }
     });
 })();
 
 /*
-"should return all array elements that match the condition when calling select()": function () {
-    value_of($.lang.select([5, 0, 3, 4, 2, 1],
-                       function (i, item) { return item % 2 === 0; })).
-    should_be([0, 4, 2]);
-},
-
-"should return all object elements that match the condition when calling select()": function () {
-    value_of($.lang.select({yes: 'in', no: 'out', yes: 'hey'},
-                       function (key, val) { return key === 'yes'; })).
-    should_be({yes: 'in', yes: 'hey'});
-},
-
-"should return the first element that matches the condition when calling first()": function () {
-    value_of($.lang.first([22, 33, 44],
-                       function (i, item) { return item % 2 === 1; })).
-    should_be(33);
-
-    value_of($.lang.first([2, 4, 6, 8],
-                       function (i, item) { return item % 2 === 1; })).
-    should_be(null);
-},
-
-"should return if all the elements match the condition when calling all()": function () {
-    value_of($.lang.all([2, 4, 6, 8],
-                       function (i, item) { return item % 2 === 0; })).
-    should_be_true());
-
-    value_of($.lang.all([2, 4, 6, 8, 9],
-                       function (i, item) { return item % 2 === 0; })).
-    should_be_false());
-},
-
-"should return if any element matches the condition when calling any()": function () {
-    value_of($.lang.any([2, 4, 6, 8],
-                       function (i, item) { return item % 2 === 0; })).
-    should_be_true());
-
-    value_of($.lang.any([2, 4, 6, 8],
-                       function (i, item) { return item % 2 === 1; })).
-    should_be_false());
-},
-
 // TODO: group_by, min, max, sort, compact
 "should ": function () {
     value_of(true).should_be_true());

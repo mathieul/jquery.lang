@@ -17,5 +17,66 @@ $.extend({
         }
         $.each(enumerable, function (i, item) { memo = block(memo, item); });
         return memo;
+    },
+
+    /*
+     * find: Returns the first enumerable element that matches the condition or null
+     *        if none does
+     */
+    find: function (enumerable, condition) {
+        for (var key in enumerable) {
+            if (enumerable.hasOwnProperty(key) && condition(key, enumerable[key])) {
+                return enumerable[key];
+            }
+        }
+        return null;
+    },
+
+    /*
+     * find_all: Returns an array with the elements that match the condition
+     */
+    find_all: function (enumerable, condition) {
+        var selected,
+        i, len,
+        key;
+    
+        if ($.is_array(enumerable)) {
+            selected = [];
+            for (i = 0, len = enumerable.length; i < len; i += 1) {
+                if (condition(i, enumerable[i])) {
+                    selected.push(enumerable[i]);
+                }
+            }
+        }
+        else {
+            selected = {};
+            for (key in enumerable) {
+                if (enumerable.hasOwnProperty(key) && condition(key, enumerable[key])) {
+                    selected[key] = enumerable[key];
+                }
+            }
+        }
+    
+        return selected;
+    },
+
+    /*
+     * all: Returns if all of the enumerable elements match the condition
+     */
+    all: function (enumerable, condition) {
+        for (var key in enumerable) {
+            if (enumerable.hasOwnProperty(key) && !condition(key, enumerable[key])) {
+                return false;
+            }
+        }
+        return true;
+    },
+    
+    
+    /*
+     * any: Returns if any of the enumerable elements matches the condition
+     */
+    any: function (enumerable, condition) {
+        return !!$.find(enumerable, condition);
     }
 });
