@@ -2,6 +2,11 @@
 
 ## TODO ##
 
+Object:
+
+ - create_object
+ - create_template (for prototypal inheritance)
+
 Enumerable:
 
  - inject

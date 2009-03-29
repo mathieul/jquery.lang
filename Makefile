@@ -5,8 +5,7 @@ SPECS_DIR = ${PREFIX}/specs
 DIST_DIR = ${PREFIX}/dist
 
 BASE_FILES = ${SRC_DIR}/type.js\
-  ${SRC_DIR}/enumerable.js \
-	${SRC_DIR}/array.js
+  ${SRC_DIR}/enumerable.js
 
 MODULES = ${SRC_DIR}/intro.js\
 	${BASE_FILES}\

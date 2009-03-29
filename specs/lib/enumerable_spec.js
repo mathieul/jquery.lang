@@ -21,84 +21,66 @@
  */
 (function () {
     
-    describe('Enumerable methods', {
-        "should run the callback for each enumerable item when calling each()": function () {
-            var count = 0;
-            $.lang.enumerable(['one', 'two', 'three']).each(function (item, i) { count += 1; });
-            value_of(count).should_be(3);
-            
-            count = 0;
-            $.lang.enumerable({attr: "value"}).each (function (key, value) {
-                if (key === 'attr') { count += 1; }
-            })
-            value_of(count).should_be(1);
-        },
-
-        "should map the result of the callback for each item when calling map()": function () {
-            value_of($.lang.enumerable([5, 3, 9]).map(function (item, i) { return item * 3; })).
-                should_be([15, 9, 27]);
-        },
-
+    describe('Enumerable functions', {
         "should inject an enumerable starting at 0 when calling inject() without init": function () {
-            var enum = $.lang.enumerable([1, 2, 3, 4, 5]);
-            value_of($.lang.inject(enum, function (mem, item) { return mem + item; })).
+            value_of($.inject([1, 2, 3, 4, 5], function (mem, item) { return mem + item; })).
             should_be(15);
         },
 
         "should inject an enumerable starting at init when calling inject() with init": function () {
-            var enum = $.lang.enumerable([10, 20, 30]);
-            value_of($.lang.inject(enum, 100, function (mem, item) { return mem - item; })).
+            value_of($.inject([10, 20, 30], 100, function (mem, item) { return mem - item; })).
                 should_be(40);
-        },
-        
-        "should return all array elements that match the condition when calling select()": function () {
-            value_of($.lang.select([5, 0, 3, 4, 2, 1],
-                               function (i, item) { return item % 2 === 0; })).
-            should_be([0, 4, 2]);
-        },
-
-        "should return all object elements that match the condition when calling select()": function () {
-            value_of($.lang.select({yes: 'in', no: 'out', yes: 'hey'},
-                               function (key, val) { return key === 'yes'; })).
-            should_be({yes: 'in', yes: 'hey'});
-        },
-        
-        "should return the first element that matches the condition when calling first()": function () {
-            value_of($.lang.first([22, 33, 44],
-                               function (i, item) { return item % 2 === 1; })).
-            should_be(33);
-
-            value_of($.lang.first([2, 4, 6, 8],
-                               function (i, item) { return item % 2 === 1; })).
-            should_be(null);
-        },
-
-        "should return if all the elements match the condition when calling all()": function () {
-            value_of($.lang.all([2, 4, 6, 8],
-                               function (i, item) { return item % 2 === 0; })).
-            should_be_true());
-
-            value_of($.lang.all([2, 4, 6, 8, 9],
-                               function (i, item) { return item % 2 === 0; })).
-            should_be_false());
-        },
-
-        "should return if any element matches the condition when calling any()": function () {
-            value_of($.lang.any([2, 4, 6, 8],
-                               function (i, item) { return item % 2 === 0; })).
-            should_be_true());
-
-            value_of($.lang.any([2, 4, 6, 8],
-                               function (i, item) { return item % 2 === 1; })).
-            should_be_false());
-        },
-
-        // TODO: group_by, min, max, sort, compact
-        "should ": function () {
-            value_of(true).should_be_true());
         }
     });
+})();
 
+/*
+"should return all array elements that match the condition when calling select()": function () {
+    value_of($.lang.select([5, 0, 3, 4, 2, 1],
+                       function (i, item) { return item % 2 === 0; })).
+    should_be([0, 4, 2]);
+},
+
+"should return all object elements that match the condition when calling select()": function () {
+    value_of($.lang.select({yes: 'in', no: 'out', yes: 'hey'},
+                       function (key, val) { return key === 'yes'; })).
+    should_be({yes: 'in', yes: 'hey'});
+},
+
+"should return the first element that matches the condition when calling first()": function () {
+    value_of($.lang.first([22, 33, 44],
+                       function (i, item) { return item % 2 === 1; })).
+    should_be(33);
+
+    value_of($.lang.first([2, 4, 6, 8],
+                       function (i, item) { return item % 2 === 1; })).
+    should_be(null);
+},
+
+"should return if all the elements match the condition when calling all()": function () {
+    value_of($.lang.all([2, 4, 6, 8],
+                       function (i, item) { return item % 2 === 0; })).
+    should_be_true());
+
+    value_of($.lang.all([2, 4, 6, 8, 9],
+                       function (i, item) { return item % 2 === 0; })).
+    should_be_false());
+},
+
+"should return if any element matches the condition when calling any()": function () {
+    value_of($.lang.any([2, 4, 6, 8],
+                       function (i, item) { return item % 2 === 0; })).
+    should_be_true());
+
+    value_of($.lang.any([2, 4, 6, 8],
+                       function (i, item) { return item % 2 === 1; })).
+    should_be_false());
+},
+
+// TODO: group_by, min, max, sort, compact
+"should ": function () {
+    value_of(true).should_be_true());
+}
     describe('Hash methods', {
         "should return an array of the object's keys when calling keys()": function () {
             value_of($.lang.keys({
@@ -138,4 +120,4 @@
             value_of($.lang.values(obj, true)).should_be(["1", "2", "3"]);
         }
     });
-})();
+*/
