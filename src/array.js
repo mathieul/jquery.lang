@@ -80,5 +80,4 @@ $.extend({
             return mem;
         });
     }
-
 });

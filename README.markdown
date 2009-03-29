@@ -27,12 +27,14 @@ Array:
  - noDuplicates
 
 
+String:
+
+ - escapeRegExp
+ - htmlEncode
+ - htmlDecode
+
 ## TODO ##
 
-Object:
+String:
 
- - create_template (for prototypal inheritance)
-
-RegExp:
-
- - escape
+ - printf
