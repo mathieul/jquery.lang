@@ -3,40 +3,24 @@
  */
 $.extend({
     /*
-    * is_array: checks if the parameter is an array
-    */
-    is_array: function (val) {
-        return !!val &&
-        typeof val === 'object' &&
-        typeof val.length === 'number' &&
-        typeof val.splice === 'function' &&
-        !(val.propertyIsEnumerable('length'));
-    },
+     * isNumber: checks if the parameter is a number
+     */
+    isNumber: function (val) { return typeof val === 'number' && isFinite(val); },
 
     /*
-    * is_number: checks if the parameter is a number
-    */
-    is_number: function (val) { return typeof val === 'number' && isFinite(val); },
+     * isString: checks if the parameter is a string
+     */
+    isString: function (val) { return typeof val === 'string'; },
 
     /*
-    * is_string: checks if the parameter is a string
-    */
-    is_string: function (val) { return typeof val === 'string'; },
+     * isBoolean: checks if the parameter is a boolean
+     */
+    isBoolean: function (val) { return typeof val === 'boolean'; },
 
     /*
-    * is_function: checks if the parameter is a function
-    */
-    is_function: function (val) { return typeof val === 'function'; },
-
-    /*
-    * is_boolean: checks if the parameter is a boolean
-    */
-    is_boolean: function (val) { return typeof val === 'boolean'; },
-
-    /*
-    * is_date: checks if the parameter is a date
-    */
-    is_date: function (val) {
+     * isDate: checks if the parameter is a date
+     */
+    isDate: function (val) {
         return !!val &&
         typeof val === 'object' &&
         typeof val.toUTCString === 'function' &&
@@ -44,26 +28,26 @@ $.extend({
     },
 
     /*
-    * is_object: checks if the parameter is a object
-    */
-    is_object: function (val) {
+     * isObject: checks if the parameter is a object
+     */
+    isObject: function (val) {
         return !!val &&
         (typeof val === 'object' ||
-        $.is_function(val));
+        $.isFunction(val));
     },
 
     /*
-    * is_regexp: checks if the parameter is a RegExp
-    */
-    is_regexp: function (val) {
+     * isRegExp: checks if the parameter is a RegExp
+     */
+    isRegExp: function (val) {
         return !!val &&
-        $.is_object(val) &&
+        $.isObject(val) &&
         val.constructor === RegExp;
     },
 
     /*
-    * is_undefined: checks if the parameter is undefined
-    */
-    is_undefined: function (val) { return typeof val === 'undefined'; }
+     * isUndefined: checks if the parameter is undefined
+     */
+    isUndefined: function (val) { return typeof val === 'undefined'; }
 });
 

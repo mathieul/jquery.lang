@@ -20,17 +20,24 @@
  *  - 
  */
 (function () {
+    var zhanna = {name: 'Zhanna', age: 27},
+        ira = {name: 'Irina', age: 27},
+        brioche = {name: 'Brioche', age: 1},
+        mathieu = {name: 'Mathieu', age: 38};
+
     describe('Array functions', {
-        "should return a sort callback to order by object property": function () {
-            var zhanna = {name: 'Zhanna', age: 27},
-                ira = {name: 'Irina', age: 27},
-                brioche = {name: 'Brioche', age: 1},
-                mathieu = {name: 'Mathieu', age: 38},
-                func = $.by('age');
+        "should return a sort callback to order by object property when calling by()": function () {
+            var func = $.by('age');
 
             value_of(func(zhanna, mathieu)).should_be(-1);
             value_of(func(zhanna, ira)).should_be(0);
             value_of(func(zhanna, brioche)).should_be(1);
+        },
+
+        "should return a sort callback that accepts a minor sort callback when calling by()": function () {
+            var func = $.by('age', function (a, b) { return [a.name, b.name]; });
+
+            value_of(func(zhanna, ira)).should_be(['Zhanna', 'Irina']);
         }
     });
 })();

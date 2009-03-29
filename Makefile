@@ -35,8 +35,8 @@ ${JQ_LANG}: ${MODULES}
 
 	@@mkdir -p ${DIST_DIR}
 	@@cat ${MODULES} | \
-		sed 's/Date:./&'"${DATE}"'/' | \
-		sed 's/Commit:./&'"${REV}"'/' | \
+		sed 's/^Date:./&'"${DATE}"'/' | \
+		sed 's/^Commit:./&'"${REV}"'/' | \
 		${VER} > ${JQ_LANG};
 
 	@@echo ${JQ_LANG} "Built"

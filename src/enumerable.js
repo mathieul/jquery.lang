@@ -33,14 +33,14 @@ $.extend({
     },
 
     /*
-     * find_all: Returns an array with the elements that match the condition
+     * findAll: Returns an array with the elements that match the condition
      */
-    find_all: function (enumerable, condition) {
+    findAll: function (enumerable, condition) {
         var selected,
         i, len,
         key;
     
-        if ($.is_array(enumerable)) {
+        if ($.isArray(enumerable)) {
             selected = [];
             for (i = 0, len = enumerable.length; i < len; i += 1) {
                 if (condition(i, enumerable[i])) {

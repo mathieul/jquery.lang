@@ -40,14 +40,14 @@
                 should_be(null);
         },
 
-        "should return all array elements that match the condition when calling find_all()": function () {
-            value_of($.find_all([5, 0, 3, 4, 2, 1],
+        "should return all array elements that match the condition when calling findAll()": function () {
+            value_of($.findAll([5, 0, 3, 4, 2, 1],
                 function (i, item) { return item % 2 === 0; })).
             should_be([0, 4, 2]);
         },
 
-        "should return all object elements that match the condition when calling find_all()": function () {
-            value_of($.find_all({'in': 'yes', 'out': 'no', 'hey': 'yes'},
+        "should return all object elements that match the condition when calling findAll()": function () {
+            value_of($.findAll({'in': 'yes', 'out': 'no', 'hey': 'yes'},
                 function (key, value) { return value === 'yes'; })).
             should_be({'in': 'yes', 'hey': 'yes'});
         },

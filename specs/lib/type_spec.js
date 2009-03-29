@@ -22,92 +22,72 @@
 (function () {
 
     describe('Type checking functions', {
-        'should return true when calling is_array() with an array': function () {
-            value_of($.is_array([])).should_be_true();
-            value_of($.is_array([1, "two"])).should_be_true();
+        'should return true when calling isNumber() with a number': function () {
+            value_of($.isNumber(12)).should_be_true();
         },
 
-        'should return false when calling is_array() if not an array': function () {
-            value_of($.is_array("nope")).should_be_false();
-            value_of($.is_array(arguments)).should_be_false();
-            value_of($.is_array({0: 'zero', 1: 'one', length: 2})).should_be_false();
+        'should return false when calling isNumber() if not a number': function () {
+            value_of($.isNumber("12")).should_be_false();
+            value_of($.isNumber(NaN)).should_be_false();
         },
 
-        'should return true when calling is_number() with a number': function () {
-            value_of($.is_number(12)).should_be_true();
+        'should return true when calling isString() with a string': function () {
+            value_of($.isString("hello")).should_be_true();
         },
 
-        'should return false when calling is_number() if not a number': function () {
-            value_of($.is_number("12")).should_be_false();
-            value_of($.is_number(NaN)).should_be_false();
+        'should return false when calling isString() if not a string': function () {
+            value_of($.isString(42)).should_be_false();
         },
 
-        'should return true when calling is_string() with a string': function () {
-            value_of($.is_string("hello")).should_be_true();
+        'should return true when calling isBoolean() with a boolean': function () {
+            value_of($.isBoolean(true)).should_be_true();
+            value_of($.isBoolean(false)).should_be_true();
         },
 
-        'should return false when calling is_string() if not a string': function () {
-            value_of($.is_string(42)).should_be_false();
-        },
-
-        'should return true when calling is_function() with a function': function () {
-            value_of($.is_function(Array.slice)).should_be_true();
-            value_of($.is_function(function () {})).should_be_true();
-        },
-
-        'should return false when calling is_function() if not a function': function () {
-            value_of($.is_function({})).should_be_false();
-        },
-
-        'should return true when calling is_boolean() with a boolean': function () {
-            value_of($.is_boolean(true)).should_be_true();
-            value_of($.is_boolean(false)).should_be_true();
-        },
-
-        'should return false when calling is_boolean() if not a boolean': function () {
+        'should return false when calling isBoolean() if not a boolean': function () {
             var not_defined;
-            value_of($.is_boolean(not_defined)).should_be_false();
-            value_of($.is_boolean(null)).should_be_false();
-            value_of($.is_boolean(0)).should_be_false();
-            value_of($.is_boolean('')).should_be_false();
+            value_of($.isBoolean(not_defined)).should_be_false();
+            value_of($.isBoolean(null)).should_be_false();
+            value_of($.isBoolean(0)).should_be_false();
+            value_of($.isBoolean('')).should_be_false();
         },
 
-        'should return true when calling is_date() with a date': function () {
-            value_of($.is_date(new Date())).should_be_true();
+        'should return true when calling isDate() with a date': function () {
+            value_of($.isDate(new Date())).should_be_true();
         },
 
-        'should return false when calling is_date() if not a date': function () {
-            value_of($.is_date({toUTCString: 'test'})).should_be_false();
+        'should return false when calling isDate() if not a date': function () {
+            value_of($.isDate({toUTCString: 'test'})).should_be_false();
         },
         
-        'should return true when calling is_object() with an object': function () {
-            value_of($.is_object({})).should_be_true();
-            value_of($.is_object(function () {})).should_be_true();
+        'should return true when calling isObject() with an object': function () {
+            value_of($.isObject({})).should_be_true();
+            value_of($.isObject(function () {})).should_be_true();
         },
 
-        'should return false when calling is_object() if not an object': function () {
-            value_of($.is_object(12)).should_be_false();
-            value_of($.is_object("blah")).should_be_false();
+        'should return false when calling isObject() if not an object': function () {
+            value_of($.isObject(12)).should_be_false();
+            value_of($.isObject("blah")).should_be_false();
         },
         
-        'should return true when calling is_regexp() with a regexp': function () {
-            value_of($.is_regexp(new RegExp('^$'))).should_be_true();
-            value_of($.is_regexp(/^$/)).should_be_true();
+        'should return true when calling isRegExp() with a regexp': function () {
+            value_of($.isRegExp(new RegExp('^$'))).should_be_true();
+            value_of($.isRegExp(/^$/)).should_be_true();
         },
 
-        'should return false when calling is_regexp() if not a regexp': function () {
-            value_of($.is_regexp("^$")).should_be_false();
+        'should return false when calling isRegExp() if not a regexp': function () {
+            value_of($.isRegExp("^$")).should_be_false();
         },
 
-        'should return true when calling is_undefined() with a regexp': function () {
+        'should return true when calling isUndefined() with a regexp': function () {
             var not_defined;
-            value_of($.is_undefined()).should_be_true();
-            value_of($.is_undefined(not_defined)).should_be_true();
-            value_of($.is_undefined(undefined)).should_be_true();
+            value_of($.isUndefined()).should_be_true();
+            value_of($.isUndefined(not_defined)).should_be_true();
+            value_of($.isUndefined(undefined)).should_be_true();
         },
 
-        'should return false when calling is_undefined() if not a regexp': function () {
-            value_of($.is_undefined(false)).should_be_false();
+        'should return false when calling isUndefined() if not a regexp': function () {
+            value_of($.isUndefined(false)).should_be_false();
         }
     });
 })();

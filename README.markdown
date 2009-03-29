@@ -12,12 +12,16 @@ Enumerable:
  - all
  - any
  - find
- - find_all
+ - findAll
 
 Hash:
 
  - keys
  - values
+
+Array:
+
+ - by (for sort)
 
 
 ## TODO ##
@@ -28,7 +32,6 @@ Object:
 
 Array:
 
- - by (for sort)
  - include (?)
  - compact
  - flatten
