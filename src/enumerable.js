@@ -1,5 +1,5 @@
 /*
- * Enumerable MixIn
+ * Enumerable functions
  */
 $.extend({
     /*

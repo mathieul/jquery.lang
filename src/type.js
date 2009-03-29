@@ -1,13 +1,7 @@
-$.lang = $.lang || {
-    /*
-    * create_object: create an object using prototypal inheritance
-    */
-    create_object: function (o) {
-        var F = function () {};
-        F.prototype = o;
-        return new F();
-    },
-
+/*
+ * Type functions
+ */
+$.extend({
     /*
     * is_array: checks if the parameter is an array
     */
@@ -55,7 +49,7 @@ $.lang = $.lang || {
     is_object: function (val) {
         return !!val &&
         (typeof val === 'object' ||
-        $.lang.is_function(val));
+        $.is_function(val));
     },
 
     /*
@@ -63,7 +57,7 @@ $.lang = $.lang || {
     */
     is_regexp: function (val) {
         return !!val &&
-        $.lang.is_object(val) &&
+        $.is_object(val) &&
         val.constructor === RegExp;
     },
 
@@ -71,5 +65,5 @@ $.lang = $.lang || {
     * is_undefined: checks if the parameter is undefined
     */
     is_undefined: function (val) { return typeof val === 'undefined'; }
-};
+});
 

@@ -4,8 +4,10 @@ DOCS_DIR = ${PREFIX}/docs
 SPECS_DIR = ${PREFIX}/specs
 DIST_DIR = ${PREFIX}/dist
 
-BASE_FILES = ${SRC_DIR}/type.js\
-  ${SRC_DIR}/enumerable.js
+BASE_FILES = ${SRC_DIR}/object.js\
+	${SRC_DIR}/type.js\
+	${SRC_DIR}/enumerable.js\
+	${SRC_DIR}/object.js
 
 MODULES = ${SRC_DIR}/intro.js\
 	${BASE_FILES}\

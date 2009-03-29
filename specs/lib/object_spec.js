@@ -20,9 +20,20 @@
  *  - 
  */
 (function () {
-    describe('Array functions', {
-        "should ...": function () {
-            value_of(true).should_be_true();
+    describe('Object and Prototypal Inheritance functions', {
+        before_each: function () {},
+        after_each: function () {},
+
+        'should return an object when calling create_object()': function () {
+            value_of(typeof $.create_object({})).should_be('object');
+        },
+        
+        'should return an object with its prototype set to the parameter': function () {
+            var func = function () { return 42; },
+                obj = $.create_object({str: "hey", num: 12, answer: func});
+            value_of(obj.str).should_be("hey");
+            value_of(obj.num).should_be(12);
+            value_of(obj.answer()).should_be("42");
         }
     });
 })();
