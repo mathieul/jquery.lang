@@ -23,6 +23,8 @@ Array:
 
  - by (for sort)
  - compact
+ - flatten
+ - noDuplicates
 
 
 ## TODO ##
@@ -31,12 +33,6 @@ Object:
 
  - create_template (for prototypal inheritance)
 
-Array:
-
- - flatten
- - uniq
-
 RegExp:
 
  - escape
-

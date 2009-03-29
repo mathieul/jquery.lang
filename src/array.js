@@ -29,8 +29,9 @@ $.extend({
     },
 
     /*
-     * compact:     Returns a the array after removing the null and undefined
-     *              values. The operation is destructive.
+     * compact:     Returns the array after removing the null and undefined
+     *              values. Note: this operation is destructive as the array
+     *              is modified in place.
      */
     compact: function (array) {
         var i = 0,
@@ -47,6 +48,37 @@ $.extend({
         }
 
         return array;
-    }
-});
+    },
 
+    /*
+     * flatten:     Returns a flat version of the array, meaning a one-dimensional
+     *              version of the array.
+     */
+    flatten: function (array) {
+        var i, len, res = [];
+        
+        for (i = 0, len = array.length; i < len; i += 1) {
+            if ($.isArray(array[i])) {
+                res = res.concat(arguments.callee(array[i]));
+            }
+            else {
+                res[res.length] = array[i];
+            }
+        }
+        
+        return res;
+    },
+
+    /*
+     * noDups:      Returns a new version of the array without the duplicates.
+     */
+    noDups: function (array) {
+        return $.inject(array, [], function (mem, item) {
+            if (mem.length === 0 || $.inArray(item, mem) === -1) {
+                mem[mem.length] = item;
+            }
+            return mem;
+        });
+    }
+
+});
