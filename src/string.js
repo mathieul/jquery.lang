@@ -83,14 +83,17 @@ $.extend({
             },
 
             formatString = function(value, leftJustify, minWidth, precision, zeroPad, customPadChar) {
-                if (precision !== null) {
+                if (precision) {
                     value = value.slice(0, precision);
                 }
+
                 return justify(value, '', leftJustify, minWidth, zeroPad, customPadChar);
             };
 
         return function () {
-            var a = arguments, format = a[0], i = 1;
+            var a = arguments,
+                format = a[0],
+                i = 1;
             return format.replace(regex, function(substring, valueIndex, flags, minWidth, _, precision, type) {
                 var j,
                     number,
