@@ -24,7 +24,8 @@ $.extend({
             '"': '&quot;'
         };
         return function (value) {
-            return value.replace(/[<>&"]/g, function (c) { return chararcter[c]; });
+            return value.replace ?
+              value.replace(/[<>&"]/g, function (c) { return chararcter[c]; }) : value;
         };
     })(),
 

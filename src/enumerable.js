@@ -20,10 +20,10 @@ $.extend({
     },
 
     /*
-     * find: Returns the first enumerable element that matches the condition or null
-     *        if none does
+     * findFirst: Returns the first enumerable element that matches the condition or null
+     *            if none does
      */
-    find: function (enumz, condition) {
+    findFirst: function (enumz, condition) {
         var i, len = enumz.length;
         
         if (len === undefined) {
@@ -89,6 +89,6 @@ $.extend({
      * any: Returns if any of the enumerable elements matches the condition
      */
     any: function (enumz, condition) {
-        return !!$.find(enumz, condition);
+        return !!$.findFirst(enumz, condition);
     }
 });

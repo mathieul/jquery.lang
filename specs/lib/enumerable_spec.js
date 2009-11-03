@@ -32,14 +32,14 @@
                 should_be(40);
         },
 
-        "should return the first element that matches the condition when calling find()": function () {
-            value_of($.find([22, 33, 44], function (i, item) { return item % 2 === 1; })).
+        "should return the first element that matches the condition when calling findFirst()": function () {
+            value_of($.findFirst([22, 33, 44], function (i, item) { return item % 2 === 1; })).
                 should_be(33);
 
-            value_of($.find([2, 4, 6, 8], function (i, item) { return item % 2 === 1; })).
+            value_of($.findFirst([2, 4, 6, 8], function (i, item) { return item % 2 === 1; })).
                 should_be(null);
 
-            value_of($.find({one: 11, two: 22, three: 33},
+            value_of($.findFirst({one: 11, two: 22, three: 33},
                 function (key, value) { return value % 2 === 1; })).
                 should_be({key: 'one', value: 11});
         },

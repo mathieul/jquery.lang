@@ -31,6 +31,10 @@
                 should_be('&lt;div&gt;&amp; &quot;&lt;/div&gt;');
         },
 
+        "should return the value when calling htmlEncode() with something else than a string": function () {
+            value_of($.htmlEncode(12)).should_be(12);
+        },
+
         "should decode HTML reserved entities when calling htmlDecode()": function () {
             value_of($.htmlDecode('&quot;Enfoires!&quot; =&gt; ?&amp;!@% &lt;=')).
                 should_be('"Enfoires!" => ?&!@% <=');

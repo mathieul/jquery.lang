@@ -21,7 +21,7 @@ Enumerable:
  - inject
  - all
  - any
- - find
+ - findFirst
  - findAll
 
 Hash:
