@@ -24,7 +24,7 @@ $.extend({
             '"': '&quot;'
         };
         return function (value) {
-            return value.replace ?
+            return (value && value.replace) ?
               value.replace(/[<>&"]/g, function (c) { return chararcter[c]; }) : value;
         };
     })(),
@@ -41,8 +41,8 @@ $.extend({
             '&quot;':   '"'
         };
         return function (value) {
-            return value.replace(/(&lt;|&gt;|&amp;|&quot;)/g,
-                function (c) { return entity[c]; });
+            return (value && value.replace) ?
+                value.replace(/(&lt;|&gt;|&amp;|&quot;)/g, function (c) { return entity[c]; }) : value;
         };
     })(),
     
